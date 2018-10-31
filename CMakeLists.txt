@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project (Mtgsim)
-file(GLOB Sources "*.cpp")
-add_executable(mtg main.cpp ${Sources} )
-
+file(GLOB Sources "src/*.cpp")
+file(GLOB Includes "include/*.h")
+include_directories(include)
+add_executable(mtg main.cpp ${Sources} ${Includes} )

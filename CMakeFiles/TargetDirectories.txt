@@ -1,3 +1,0 @@
-/Users/nknapp/code/mtg-sim/CMakeFiles/rebuild_cache.dir
-/Users/nknapp/code/mtg-sim/CMakeFiles/edit_cache.dir
-/Users/nknapp/code/mtg-sim/CMakeFiles/mtg.dir

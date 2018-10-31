@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/mtg.dir/build.make CMakeFiles/mtg.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/run.o: src/run.cpp.o
+
+.PHONY : src/run.o
+
+# target to build an object file
+src/run.cpp.o:
+	$(MAKE) -f CMakeFiles/mtg.dir/build.make CMakeFiles/mtg.dir/src/run.cpp.o
+.PHONY : src/run.cpp.o
+
+src/run.i: src/run.cpp.i
+
+.PHONY : src/run.i
+
+# target to preprocess a source file
+src/run.cpp.i:
+	$(MAKE) -f CMakeFiles/mtg.dir/build.make CMakeFiles/mtg.dir/src/run.cpp.i
+.PHONY : src/run.cpp.i
+
+src/run.s: src/run.cpp.s
+
+.PHONY : src/run.s
+
+# target to generate assembly for a file
+src/run.cpp.s:
+	$(MAKE) -f CMakeFiles/mtg.dir/build.make CMakeFiles/mtg.dir/src/run.cpp.s
+.PHONY : src/run.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/run.o"
+	@echo "... src/run.i"
+	@echo "... src/run.s"
 .PHONY : help
 
 
