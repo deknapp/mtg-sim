@@ -1,7 +1,5 @@
 #include <run.h>
 
-#include <../include/Deck.h>
-
 #include <iostream>
 #include <fstream>
 #include <memory>
@@ -43,7 +41,7 @@ void run( char* filename ) {
   } 
 
   Deck deck( lines );
-//  simulate( deck );
+  simulate( deck );
 
 }
 
