@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <fstream>
 #include <map>
@@ -43,7 +45,7 @@ struct Card {
   int cost() {
     int totalCost = 0;
     for ( auto pair : costs ){
-      totalCost += pair.first;
+      totalCost += pair.second;
     }
     return totalCost;
   }

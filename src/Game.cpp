@@ -9,7 +9,7 @@ bool cardSortFunction( std::shared_ptr< Card > cardA, std::shared_ptr< Card > ca
   int cardBcost = cardB->cost(); 
 }
 
-void Game::Game( std::shared_ptr< Deck > _deck ) {
+Game::Game( std::shared_ptr< Deck > _deck ) {
 
   deck = _deck;
   record = std::shared_ptr< GameRecord >( new GameRecord() );

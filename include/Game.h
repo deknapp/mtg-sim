@@ -1,4 +1,7 @@
+#pragma once
+
 #include <Deck.h>
+#include <GameRecord.h>
 
 #include <map>
 #include <memory>
@@ -10,7 +13,7 @@ class Game {
 public:
 
   Game( std::shared_ptr< Deck > );
-  turn();
+  void turn();
 
 private:
 
@@ -20,9 +23,9 @@ private:
   std::shared_ptr< Deck > deck;
   std::vector< std::shared_ptr< Card > > hand;
   
-  playCard( std::shared_ptr< Card > );
+  void playCard( std::shared_ptr< Card > );
  
-} 
+}; 
 
 
 
@@ -31,4 +34,3 @@ private:
 
 
 
-}

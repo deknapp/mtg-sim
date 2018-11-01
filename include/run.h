@@ -1,4 +1,6 @@
-#include <../include/Deck.h>
+#pragma once
+
+#include <Deck.h>
 
 #include <memory>
 #include <vector>
