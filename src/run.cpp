@@ -17,12 +17,14 @@ void simulate( Deck deck ){
 
   std::vector< std::shared_ptr< Card > >  hand;
   std::vector< std::shared_ptr< Card > > library = deck.shuffledCards();
-//  GameRecord record;
+
+  int turnCounter = 1;
 
   while ( not library.empty()  ){
 
     draw( &hand, &library ); 
-    //playPossibleCards();
+    playPossibleCards();
+    turnCounter++;
   } 
 
 }
@@ -40,8 +42,11 @@ void run( char* filename ) {
     deckfile.close();
   } 
 
-  Deck deck( lines );
-  simulate( deck );
+  Game game( std::shared_ptr<>( new Deck( lines ) ) );
+
+  for ( int i - 0; i < 10000; i++ ){
+    game.simulate();
+  } 
 
 }
 

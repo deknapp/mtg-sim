@@ -40,6 +40,13 @@ struct Card {
     
   }
 
+  int cost() {
+    int totalCost = 0;
+    for ( auto pair : costs ){
+      totalCost += pair.first;
+    }
+    return totalCost;
+  }
 };
 
 
