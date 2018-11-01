@@ -29,10 +29,20 @@ void Game::sortHand() {
   std::sort( hand.begin(), hand.end(), cardSortFunction );
 }
 
-bool Game::playable( std::shared_ptr< Card > ){
+bool Game::playable( std::shared_ptr< Card > card ){
 
-  // compare card cost to untapped mana
+  if ( card->isLand() ){
+    return false;
+  }
 
+  auto cost = card->cost();
+  for ( auto pair : *( cost.get() ){
+    if ( untappedMana[ pair.first ] < cost[ pair.first ] ){
+      return false;
+    }  
+  } 
+  
+  return true;
 } 
 
 void Game::tryPlayCard(){
@@ -41,18 +51,49 @@ void Game::tryPlayCard(){
   for ( auto card : hand ) {
     if ( playable( card ) ){
       playCard( card );
+      break;
     }
   }
 
 }
 
-void Game::playCard() {
+void Game::addMana( std::string name ){
+  untappedMana[ name ] += 1;
+  mana[ name ] += 1;
+}
 
+void Game::playLand(){
+
+  for ( auto card : hand ){
+    if ( card->isLand() ){
+      playCard( card ); 
+      addMana( card->name() );
+    }
+  }
+}
+
+void Game::playCard( std::shared_ptr< Card > card ) {
 
   
-  // play card, tap mana, record turn that card was played
-
-
+  // tap mana
+  auto costs = card->costs(); 
+  for ( auto pair : card->costs() ){
+    untappedMana[ pair.first ] -= card[ pair.first ];
+  } 
+  
+  // record turn that card was played
+  record.add( card, turn );
+ 
+  // remove card from hand
+  auto cardIt = hand.begin();
+  for ( auto _card : hand ) {
+    if ( card->name() == _card->name() ){
+      hand.erase( cardIt );
+      return; 
+    }
+    cardIt++; 
+  }
+ 
 }
 
 
