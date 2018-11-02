@@ -17,11 +17,11 @@ Game::Game( std::shared_ptr< Deck > _deck ) {
 
 }
 
-void Game::draw( std::vector< std::shared_ptr< Card > >* hand, std::vector< std::shared_ptr< Card > >* library ){
+void Game::draw(){ 
 
-  std::shared_ptr< Card > card = library->back();
-  library->pop_back(); 
-  hand->push_back( card );
+  std::shared_ptr< Card > card = library.back();
+  library.pop_back(); 
+  hand.push_back( card );
 }
 
 void Game::sortHand() {
@@ -31,13 +31,13 @@ void Game::sortHand() {
 
 bool Game::playable( std::shared_ptr< Card > card ){
 
-  if ( card->isLand() ){
+  if ( card->isLand ){
     return false;
   }
 
-  auto cost = card->cost();
-  for ( auto pair : *( cost.get() ){
-    if ( untappedMana[ pair.first ] < cost[ pair.first ] ){
+  auto costs = card->costs;
+  for ( auto pair : costs ){
+    if ( untappedMana[ pair.first ] < costs[ pair.first ] ){
       return false;
     }  
   } 
@@ -62,32 +62,35 @@ void Game::addMana( std::string name ){
   mana[ name ] += 1;
 }
 
-void Game::playLand(){
+bool Game::playLand(){
 
   for ( auto card : hand ){
-    if ( card->isLand() ){
+    if ( card->isLand ){
       playCard( card ); 
-      addMana( card->name() );
+      addMana( card->name );
+      return true;
     }
   }
+
+  return false;
 }
 
 void Game::playCard( std::shared_ptr< Card > card ) {
 
   
   // tap mana
-  auto costs = card->costs(); 
-  for ( auto pair : card->costs() ){
-    untappedMana[ pair.first ] -= card[ pair.first ];
+  auto costs = card->costs; 
+  for ( auto pair : card->costs ){
+    untappedMana[ pair.first ] -= costs[ pair.first ];
   } 
   
   // record turn that card was played
-  record.add( card, turn );
+  record->add( card, currentTurn );
  
   // remove card from hand
   auto cardIt = hand.begin();
   for ( auto _card : hand ) {
-    if ( card->name() == _card->name() ){
+    if ( card->name == _card->name ){
       hand.erase( cardIt );
       return; 
     }
@@ -99,19 +102,21 @@ void Game::playCard( std::shared_ptr< Card > card ) {
 
 void Game::turn() {
 
+  untappedMana = mana;
   draw();
   bool playedLand = playLand();
-  playCard();
+  tryPlayCard();
   if ( not playedLand ){
     playLand();
   }
-  playCard();
+  tryPlayCard();
 
+  currentTurn++;
 }
 
-void Game::simulate( Deck deck ){
+void Game::simulate(){
 
-  library = deck.shuffledCards();
+  library = deck->shuffledCards();
 
   int turnCounter = 1;
 
