@@ -13,8 +13,10 @@ Game::Game( std::shared_ptr< Deck > _deck ) {
 
   deck = _deck;
   record = std::shared_ptr< GameRecord >( new GameRecord() );
-
-
+  library = deck->shuffledCards();
+  for ( int i = 0; i < 7; i++ ){
+    draw();
+  } 
 }
 
 void Game::draw(){ 

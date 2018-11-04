@@ -26,7 +26,7 @@ class Deck {
       std::random_shuffle( cards.begin(), cards.end() );
       return cards;
     };
-  
+    
   private:
     std::vector< std::shared_ptr< Card > > cards;
         
