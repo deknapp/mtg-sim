@@ -9,7 +9,7 @@ struct Card {
   bool isLand;
   std::map<std::string, int> costs;
   std::string name;
-
+  int quantity;
   Card( std::string );
   int cost();
 

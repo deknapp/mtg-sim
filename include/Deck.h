@@ -19,7 +19,9 @@ class Deck {
       for ( auto line : inputFileLines ){
         cards.push_back( std::shared_ptr< Card >( new Card( line ) ) );
       }
-
+      for ( int i = 0; i < cards.back()->quantity; i++ ){
+        cards.push_back( cards.back() ); 
+      }
     };
     std::vector< std::shared_ptr< Card > > shuffledCards(){
 
