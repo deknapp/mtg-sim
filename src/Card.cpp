@@ -26,7 +26,7 @@ Card::Card( std::string line ) :
       name = tokens[ i+1 ];
     } 
     else if ( key == "quantity" ){
-      quantity = stoi( tokens.at( i ) );
+      quantity = stoi( tokens.at( i+1 ) );
     }
     else if ( ( key == "red" ) ||
               ( key == "blue" ) ||

@@ -4,7 +4,9 @@
 
 int main( int argc, char* argv[] ){
   
-  if ( argc == 0 or argc > 1 ){
+  if ( argc == 1 or argc > 2 ){
+    std::cout << argv[0] << " " << argv[1] << std::endl;
+    std::cout << argc << std::endl;
     std::cout << "Invalid arguments. Requires one text file argument." << std::endl;
     return 0;
   }
