@@ -1,0 +1,19 @@
+plains 7
+mountain 7
+island 3
+name deafening-clarion cost 3 red 1 white 1 
+name fresh-faced-recruit quantity 3 cost 2 red 1
+name goblin-banneret red 1
+name healers-hawk quantity 2 white 1
+name luminous-bonds cost 3 white 1 
+name cosmotronic-wave cost 4 red 1 
+name expansion-explosion cost 6 red 2 blue 2
+name radical-idea quantity 2 cost 2 blue 1
+name skyline-scout quantity 2 cost 2 white 1
+name blade-instructor quantity 2 cost 3 white 1
+name hypothesizzle quantity 1 cost 5 red 1 blue 1
+name ornery-goblin quantity 1 cost 2 red 1
+
+
+
+
