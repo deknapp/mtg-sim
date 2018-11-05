@@ -1,5 +1,6 @@
 #include <ManaPool.h>
 
+#include <iostream>
 #include <map>
 #include <memory>
 
@@ -74,7 +75,6 @@ void ManaPool::addMana( std::shared_ptr< Card > card ){
 
   untappedMana[ card->name ] += 1;
   totalMana[ card->name ] += 1;
-
 }
 
 
