@@ -45,27 +45,11 @@ void Game::sortHand() {
   std::sort( hand.begin(), hand.end(), cardSortFunction );
 }
 
-bool Game::playable( std::shared_ptr< Card > card ){
-
-  if ( card->isLand ){
-    return false;
-  }
-
-  auto costs = card->costs;
-  for ( auto pair : costs ){
-    if ( untappedMana[ pair.first ] < costs[ pair.first ] ){
-      return false;
-    }  
-  } 
-  
-  return true;
-} 
-
 void Game::tryPlayCard(){
 
   sortHand();
   for ( auto card : hand ) {
-    if ( playable( card ) ){
+    if ( manaPool->playable( card ) ){
       playCard( card );
       break;
     }
@@ -73,18 +57,12 @@ void Game::tryPlayCard(){
 
 }
 
-void Game::addMana( std::string name ){
-  std::cout << "adding " << name << std::endl;
-  untappedMana[ name ] += 1;
-  mana[ name ] += 1;
-}
-
 bool Game::playLand(){
 
   for ( auto card : hand ){
     if ( card->isLand ){
       playCard( card ); 
-      addMana( card->name );
+      manaPool->addMana( card );
       return true;
     }
   }
@@ -97,10 +75,9 @@ void Game::playCard( std::shared_ptr< Card > card ) {
   
   // tap mana
   auto costs = card->costs; 
-  for ( auto pair : card->costs ){
-    untappedMana[ pair.first ] -= costs[ pair.first ];
-  } 
-  
+ 
+  manaPool->pay( card );
+
   // record turn that card was played
   record( card, currentTurn );
  
@@ -120,7 +97,8 @@ void Game::playCard( std::shared_ptr< Card > card ) {
 void Game::turn() {
 
   std::cout << "turn " << currentTurn << std::endl;
-  untappedMana = mana;
+  
+  manaPool->untap();
   draw();
   bool playedLand = playLand();
   tryPlayCard();
