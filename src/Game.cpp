@@ -25,6 +25,7 @@ void Game::printResults(){
 
 Game::Game( std::vector< std::string > lines ) {
 
+  manaPool = std::shared_ptr< ManaPool >( new ManaPool() );
   deck = std::shared_ptr< Deck >( new Deck( lines ) );
   library = deck->shuffledCards();
   // TODO: add option for play or draw
@@ -47,7 +48,6 @@ void Game::sortHand() {
 
 void Game::tryPlayCard(){
 
-  std::cout << "trying to play Card " << std::endl;
   sortHand();
   for ( auto card : hand ) {
     if ( manaPool->playable( card ) ){
@@ -73,8 +73,6 @@ bool Game::playLand(){
 
 void Game::playCard( std::shared_ptr< Card > card ) {
 
-  std::cout << "playing card : << " << card->name << std::endl;
- 
   // tap mana
   auto costs = card->costs; 
  
@@ -98,8 +96,6 @@ void Game::playCard( std::shared_ptr< Card > card ) {
 
 void Game::turn() {
 
-  std::cout << "turn " << currentTurn << std::endl;
-  
   manaPool->untap();
   draw();
   bool playedLand = playLand();
@@ -108,18 +104,14 @@ void Game::turn() {
     playLand();
   }
   tryPlayCard();
-  std::cout << "next turn" << std::endl;
   currentTurn++;
 }
 
 void Game::simulate(){
 
-  std::cout << "starting simulation" << std::endl;
   currentTurn = 1;
-  std::cout << "library size " << library.size() << std::endl;
   while ( not library.empty()  ){  
     turn();
-    std::cout << "library size " << library.size() << std::endl;
   }   
 
   printResults();
