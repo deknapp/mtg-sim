@@ -26,6 +26,13 @@ Card::Card( std::string line ) :
     std::string key = tokens.at( i ); 
     if ( key == "name" ) {
       name = tokens[ i+1 ];
+      if ( ( name == "mountain" ) ||
+           ( name == "plains" ) || 
+           ( name == "island" ) ||
+           ( name == "swamp" ) || 
+           ( name == "forest" ) ) {
+         isLand = true; 
+       }
     } 
     else if ( key == "quantity" ){
       quantity = stoi( tokens.at( i+1 ) );

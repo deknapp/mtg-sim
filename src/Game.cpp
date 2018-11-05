@@ -74,6 +74,7 @@ void Game::tryPlayCard(){
 }
 
 void Game::addMana( std::string name ){
+  std::cout << "adding " << name << std::endl;
   untappedMana[ name ] += 1;
   mana[ name ] += 1;
 }
@@ -118,6 +119,7 @@ void Game::playCard( std::shared_ptr< Card > card ) {
 
 void Game::turn() {
 
+  std::cout << "turn " << currentTurn << std::endl;
   untappedMana = mana;
   draw();
   bool playedLand = playLand();
@@ -133,15 +135,10 @@ void Game::turn() {
 void Game::simulate(){
 
   std::cout << "starting simulation" << std::endl;
-
   library = deck->shuffledCards();
-
-  int turnCounter = 1;
-
+  currentTurn = 1;
   while ( not library.empty()  ){  
-
     turn();
-    turnCounter++;
   }   
 
   printResults();

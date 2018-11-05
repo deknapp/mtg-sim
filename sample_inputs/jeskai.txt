@@ -1,6 +1,6 @@
-plains 7
-mountain 7
-island 3
+name plains quantity 7
+name mountain quantity 7
+name island quantity 3
 name deafening-clarion colorless 1 red 1 white 1 
 name fresh-faced-recruit quantity 3 colorless 1 red 1
 name goblin-banneret red 1
