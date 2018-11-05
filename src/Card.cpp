@@ -10,7 +10,8 @@
 
 Card::Card( std::string line ) :
   cantrip( 0 ),
-  name( "unnamed" )  
+  name( "unnamed" ),  
+  quantity( 1 )
 {
   std::stringstream ss(line);
   std::vector< std::string > tokens;

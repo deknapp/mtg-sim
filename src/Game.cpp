@@ -1,5 +1,6 @@
 #include <Game.h>
 
+#include <iostream>
 #include <memory>
 #include <vector>
 
@@ -117,6 +118,8 @@ void Game::turn() {
 }
 
 void Game::simulate(){
+
+  std::cout << "starting simulation" << std::endl;
 
   library = deck->shuffledCards();
 

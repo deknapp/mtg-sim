@@ -3,6 +3,7 @@
 #include <Card.h>
 
 #include <algorithm>
+#include <iostream>
 #include <fstream>
 #include <map>
 #include <memory>
@@ -17,10 +18,16 @@ class Deck {
     Deck( std::vector< std::string > inputFileLines ){
       
       for ( auto line : inputFileLines ){
+        std::cout << "adding new Card " << std::endl;
         cards.push_back( std::shared_ptr< Card >( new Card( line ) ) );
       }
-      for ( int i = 0; i < cards.back()->quantity; i++ ){
-        cards.push_back( cards.back() ); 
+      int deckSizeWithoutDuplicates = cards.size();
+      for ( int i = 0; i < deckSizeWithoutDuplicates; i++ ){
+        
+        for ( int j = 0; j < cards[ i ]->quantity - 1; j++ ) {
+          std::cout << "adding new card" << std::endl;
+          cards.push_back( cards[ i ] ); 
+        }
       }
     };
     std::vector< std::shared_ptr< Card > > shuffledCards(){
