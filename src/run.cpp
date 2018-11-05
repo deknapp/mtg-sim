@@ -22,7 +22,7 @@ void run( char* filename ) {
 
   Game game( std::shared_ptr< Deck >( new Deck( lines ) ) );
 
-  for ( int i = 0; i < 1; i++ ){
+  for ( int i = 0; i < 10; i++ ){
     game.simulate();
   } 
 

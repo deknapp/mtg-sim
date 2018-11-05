@@ -10,10 +10,21 @@ bool cardSortFunction( std::shared_ptr< Card > cardA, std::shared_ptr< Card > ca
   int cardBcost = cardB->cost(); 
 }
 
+
+
+void Game::record( std::shared_ptr< Card > card, int turn ){
+    gameRecord.insert( std::pair< std::string, int >( card->name, turn ) );  
+}  
+  
+void Game::printResults(){
+  for ( auto pair : gameRecord ){
+    std::cout << pair.first << " " << pair.second << std::endl;
+  } 
+}  
+
 Game::Game( std::shared_ptr< Deck > _deck ) {
 
   deck = _deck;
-  record = std::shared_ptr< GameRecord >( new GameRecord() );
   library = deck->shuffledCards();
   for ( int i = 0; i < 7; i++ ){
     draw();
@@ -88,7 +99,7 @@ void Game::playCard( std::shared_ptr< Card > card ) {
   } 
   
   // record turn that card was played
-  record->add( card, currentTurn );
+  record( card, currentTurn );
  
   // remove card from hand
   auto cardIt = hand.begin();
@@ -131,4 +142,5 @@ void Game::simulate(){
     turnCounter++;
   }   
 
+  printResults();
 }
