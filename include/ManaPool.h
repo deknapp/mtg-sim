@@ -11,11 +11,15 @@ class ManaPool {
 public:
 
   void addMana( std::shared_ptr< Card > card );
+  void pay( std::shared_ptr< Card > card );
   bool playable( std::shared_ptr< Card > card );  
+  void untap();
 
 private:
-  std::map< std::string, int > untappedMana;
+
+  bool canPayColorless( int, std::map< std::string, int > );  
+  void payColorless( int );  
   std::map< std::string, int > totalMana;
-  
+  std::map< std::string, int > untappedMana;
 
 };

@@ -11,7 +11,33 @@ void ManaPool::untap() {
 void ManaPool::payColorless( int cost ){
 
   int remainingCost = cost;
-  
+  int colorPayment = 0;
+  for ( auto pair : untappedMana ){
+    if ( remainingCost == 0 ){
+      return;
+    }
+    colorPayment = std::min( remainingCost, untappedMana[ pair.first ] ); 
+    untappedMana[ pair.first ] -= colorPayment;
+    remainingCost -= colorPayment;  
+  }  
+}
+
+bool ManaPool::canPayColorless( int cost, std::map< std::string, int > temp ){
+
+  int remainingCost = cost;
+  int colorPayment = 0;
+  for ( auto pair : temp ){
+    if ( remainingCost == 0 ){
+      return true;
+    }
+    colorPayment = std::min( remainingCost, untappedMana[ pair.first ] ); 
+    untappedMana[ pair.first ] -= colorPayment;
+    remainingCost -= colorPayment;  
+  }  
+  if ( remainingCost > 0 ){
+    return false;
+  }
+  return true;
 }
 
 
@@ -28,37 +54,27 @@ void ManaPool::pay( std::shared_ptr< Card > card ){
   payColorless( costs[ "colorless" ] );
 }
 
+bool ManaPool::playable( std::shared_ptr< Card > card ){
+
+  auto temp = untappedMana;
+  auto costs = card->costs; 
+  for ( auto pair : costs ){
+    if ( not ( pair.first == "colorless" ) ){
+      temp[ pair.first ] -= costs[ pair.first ];
+      if ( temp[ pair.first ] < 0 ){
+        return false;
+      }
+    }
+  }
+
+  return canPayColorless( costs[ "colorless" ], temp );
+}
+
 void ManaPool::addMana( std::shared_ptr< Card > card ){
 
   untappedMana[ card->name ] += 1;
   totalMana[ card->name ] += 1;
 
 }
-
-bool ManaPool::playable( std::shared_ptr< Card > card ){
-
-  if ( card->isLand ){
-    return false;
-  }
-
-  auto costs = card->costs;
-  for ( auto pair : costs->singleColoredMana ){
-    if ( untappedMana[ pair.first ] < costs[ pair.first ] ){
-      return false;
-    }   
-    else {
-       
-    }   
-  }   
- 
-  if ( not costs->enoughColorlessLeft() ){
-    return;
-  }   
- 
-  costs->reset(); 
-  return true;
-}   
-
-
 
 
