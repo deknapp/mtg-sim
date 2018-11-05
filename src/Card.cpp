@@ -10,6 +10,7 @@
 
 Card::Card( std::string line ) :
   cantrip( 0 ),
+  isLand( false ),
   name( "unnamed" ),  
   quantity( 1 )
 {

@@ -20,7 +20,7 @@ void run( char* filename ) {
     deckfile.close();
   } 
 
-  Game game( std::shared_ptr< Deck >( new Deck( lines ) ) );
+  Game game( lines );
 
   for ( int i = 0; i < 10; i++ ){
     game.simulate();

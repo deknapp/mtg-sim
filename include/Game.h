@@ -10,7 +10,7 @@ class Game {
 
 public:
 
-  Game( std::shared_ptr< Deck > );
+  Game( std::vector< std::string > );
   void simulate();
 
 private:

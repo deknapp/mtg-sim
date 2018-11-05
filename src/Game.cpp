@@ -8,6 +8,7 @@
 bool cardSortFunction( std::shared_ptr< Card > cardA, std::shared_ptr< Card > cardB ){ 
   int cardAcost = cardA->cost();
   int cardBcost = cardB->cost(); 
+  return cardAcost > cardBcost;
 }
 
 
@@ -22,10 +23,11 @@ void Game::printResults(){
   } 
 }  
 
-Game::Game( std::shared_ptr< Deck > _deck ) {
+Game::Game( std::vector< std::string > lines ) {
 
-  deck = _deck;
+  deck = std::shared_ptr< Deck >( new Deck( lines ) );
   library = deck->shuffledCards();
+  // TODO: add option for play or draw
   for ( int i = 0; i < 7; i++ ){
     draw();
   } 
