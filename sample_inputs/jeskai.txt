@@ -1,18 +1,18 @@
 name plains quantity 7
 name mountain quantity 7
 name island quantity 3
-name deafening-clarion colorless 1 red 1 white 1 
-name fresh-faced-recruit quantity 3 colorless 1 red 1
-name goblin-banneret red 1
-name healers-hawk quantity 2 white 1
-name luminous-bonds colorless 2 white 1 
-name cosmotronic-wave colorless 3 red 1 
-name expansion-explosion colorless 2 red 2 blue 2
-name radical-idea quantity 2 colorless 1 blue 1
-name skyline-scout quantity 2 colorless 1 white 1
-name blade-instructor quantity 2 colorless 2 white 1
-name hypothesizzle quantity 1 colorless 3 red 1 blue 1
-name ornery-goblin quantity 1 colorless 1 red 1
+name deafening-clarion colorless 1 mountain 1 plains 1 
+name fresh-faced-recruit quantity 3 colorless 1 mountain 1
+name goblin-banneret mountain 1
+name healers-hawk quantity 2 plains 1
+name luminous-bonds colorless 2 plains 1 
+name cosmotronic-wave colorless 3 mountain 1 
+name expansion-explosion colorless 2 mountain 2 island 2
+name radical-idea quantity 2 colorless 1 island 1
+name skyline-scout quantity 2 colorless 1 plains 1
+name blade-instructor quantity 2 colorless 2 plains 1
+name hypothesizzle quantity 1 colorless 3 mountain 1 island 1
+name ornery-goblin quantity 1 colorless 1 mountain 1
 
 
 

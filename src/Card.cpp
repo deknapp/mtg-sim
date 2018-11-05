@@ -37,11 +37,11 @@ Card::Card( std::string line ) :
     else if ( key == "quantity" ){
       quantity = stoi( tokens.at( i+1 ) );
     }
-    else if ( ( key == "red" ) ||
-              ( key == "blue" ) ||
-              ( key == "white" ) ||
-              ( key == "black" ) ||
-              ( key == "green" ) ||
+    else if ( ( key == "mountain" ) ||
+              ( key == "plains" ) ||
+              ( key == "island" ) ||
+              ( key == "swamp" ) ||
+              ( key == "forest" ) ||
               ( key == "colorless" ) ) {
       costs.insert( std::pair< std::string, int >( key, stoi( tokens.at( i+1 ) ) ) ); 
     }   
