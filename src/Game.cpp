@@ -12,15 +12,8 @@ bool cardSortFunction( std::shared_ptr< Card > cardA, std::shared_ptr< Card > ca
 }
 
 
-
-void Game::record( std::shared_ptr< Card > card, int turn ){
-    gameRecord.insert( std::pair< std::string, int >( card->name, turn ) );  
-}  
-  
 void Game::printResults(){
-  for ( auto pair : gameRecord ){
-    std::cout << pair.first << " " << pair.second << std::endl;
-  } 
+  stats.print();
 }  
 
 Game::Game( std::vector< std::string > lines ) {
@@ -78,9 +71,6 @@ void Game::playCard( std::shared_ptr< Card > card ) {
  
   manaPool->pay( card );
 
-  // record turn that card was played
-  record( card, currentTurn );
- 
   // remove card from hand
   auto cardIt = hand.begin();
   for ( auto _card : hand ) {
@@ -90,7 +80,8 @@ void Game::playCard( std::shared_ptr< Card > card ) {
     }
     cardIt++; 
   }
- 
+
+  stats.recordCardPlayed( card, currentTurn ); 
 }
 
 
@@ -113,6 +104,9 @@ void Game::simulate(){
   while ( not library.empty()  ){  
     turn();
   }   
-
-  printResults();
+  for ( auto card : hand ){
+    stats.recordCardInHand( card );
+  }
+  
+  stats.print();
 }

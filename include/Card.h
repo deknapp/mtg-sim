@@ -5,6 +5,7 @@
 
 struct Card {
 
+  int turnsInHand;
   int cantrip;
   bool isLand;
   std::map<std::string, int> costs;

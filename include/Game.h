@@ -2,6 +2,7 @@
 
 #include <Deck.h>
 #include <ManaPool.h>
+#include <Stats.h>
 
 #include <map>
 #include <memory>
@@ -19,7 +20,7 @@ private:
 
   int currentTurn;
   std::shared_ptr< ManaPool > manaPool;
-  std::map< std::string, int > gameRecord;
+  Stats stats;
   std::shared_ptr< Deck > deck;
   std::vector< std::shared_ptr< Card > > library;
   std::vector< std::shared_ptr< Card > > hand;
@@ -29,7 +30,6 @@ private:
   void playCard( std::shared_ptr< Card > );
   bool playLand();
   void printResults();
-  void record( std::shared_ptr< Card >, int );
   void sortHand();
   void tryPlayCard();
   void turn();
