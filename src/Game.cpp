@@ -73,6 +73,7 @@ void Game::playCard( std::shared_ptr< Card > card ) {
 
   // remove card from hand
   auto cardIt = hand.begin();
+  stats.recordCardPlayed( card, currentTurn ); 
   for ( auto _card : hand ) {
     if ( card->name == _card->name ){
       hand.erase( cardIt );
@@ -81,7 +82,6 @@ void Game::playCard( std::shared_ptr< Card > card ) {
     cardIt++; 
   }
 
-  stats.recordCardPlayed( card, currentTurn ); 
 }
 
 
@@ -95,6 +95,9 @@ void Game::turn() {
     playLand();
   }
   tryPlayCard();
+  for ( auto card : hand ){
+    card->turnsInHand++;
+  }
   currentTurn++;
 }
 

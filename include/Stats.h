@@ -11,8 +11,8 @@ class CardStats {
     int totalTurnNumberPlayed = 0; 
     int timesPlayed = 0;
     void print(){
-      std::cout << std::endl << "average turns in hand: " << totalTurnsInHand / timesPlayed;
-      std::cout << std::endl << "average turn played: " << totalTurnNumberPlayed / timesPlayed;
+      std::cout << std::endl << "average turns in hand: " << static_cast< double > ( totalTurnsInHand ) / timesPlayed;
+      std::cout << std::endl << "average turn played: " << static_cast< double >( totalTurnNumberPlayed ) / timesPlayed;
       std::cout << std::endl; 
     }
 

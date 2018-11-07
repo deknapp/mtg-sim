@@ -12,7 +12,8 @@ Card::Card( std::string line ) :
   cantrip( 0 ),
   isLand( false ),
   name( "unnamed" ),  
-  quantity( 1 )
+  quantity( 1 ),
+  turnsInHand( 0 )
 {
   std::stringstream ss(line);
   std::vector< std::string > tokens;
