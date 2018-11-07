@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Deck.h>
+#include <Settings.h>
 
 #include <memory>
 #include <vector>

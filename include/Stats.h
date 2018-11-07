@@ -1,8 +1,10 @@
 #include <Card.h>
 
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 class CardStats {
 
@@ -16,6 +18,17 @@ class CardStats {
       std::cout << std::endl; 
     }
 
+};
+
+struct cardQualitySort {
+  inline bool operator() ( const std::pair< std::string, CardStats >& pairA, const std::pair< std::string, CardStats >& pairB ){
+  
+    auto statsA = pairA.second;
+    auto statsB = pairB.second; 
+    double metricA = static_cast< double >( statsA.totalTurnsInHand ) / statsA.timesPlayed;
+    double metricB = static_cast< double >( statsB.totalTurnsInHand ) / statsB.timesPlayed;
+    return ( metricB > metricA );
+  }
 };
 
 class Stats {
@@ -32,6 +45,7 @@ public:
     _map[ card->name ].totalTurnsInHand += card->turnsInHand;
     _map[ card->name ].totalTurnNumberPlayed += turn;
     _map[ card->name ].timesPlayed += 1;      
+    card->turnsInHand = 0;
   };
   
   void recordCardInHand( std::shared_ptr< Card > card ){
@@ -42,15 +56,21 @@ public:
     } 
     
     _map[ card->name ].totalTurnsInHand += card->turnsInHand;
+    card->turnsInHand = 0; 
   };
 
   void print(){
+    // TODO: sort by average turns in hand 
+    std::vector < std::pair< std::string, CardStats > > sortVector;
     for ( auto pair : _map ){
+      sortVector.push_back( pair );
+    }
+    std::sort( sortVector.begin(), sortVector.end(), cardQualitySort() );  
+    for ( auto pair : sortVector ){
       std::cout << pair.first;
       pair.second.print();
     }
-
-  };
+};
 
 private:
   std::map< std::string, CardStats > _map; 

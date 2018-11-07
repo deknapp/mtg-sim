@@ -15,6 +15,7 @@ public:
 
   Game( std::vector< std::string > );
   void simulate();
+  void printResults();
 
 private:
 
@@ -29,7 +30,6 @@ private:
   void draw();
   void playCard( std::shared_ptr< Card > );
   bool playLand();
-  void printResults();
   void sortHand();
   void tryPlayCard();
   void turn();

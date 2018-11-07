@@ -110,6 +110,4 @@ void Game::simulate(){
   for ( auto card : hand ){
     stats.recordCardInHand( card );
   }
-  
-  stats.print();
 }
