@@ -9,6 +9,7 @@ Execution goes as follows:
 The input file must be in the following format
 
 {keyword} {value} {keyword} {value} ...
+
 {keyword} {value} {keyword} {value} ...
 
 Each line in the input file describes a different card. For example:
@@ -19,4 +20,4 @@ For a full example, see the sample input files in the sample inputs folder.
 
 This is a work in progress that I started in late October 2018. If you have any questions or ideas email nathaniel.knapp@gmail.com.
 
-Furthermore, I am seeking full time remote work in backend development or scientific software. If you have any advice / leads for me, I would highly appreicate you contacting me at the email above.  
+Furthermore, I am seeking full time remote work in backend development or scientific software. If you have any advice / leads for me, I would highly appreciate you contacting me at the email above.  

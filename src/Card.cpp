@@ -10,7 +10,6 @@
 
 Card::Card( std::string line ) :
   cantrip( 0 ),
-  isLand( false ),
   name( "unnamed" ),  
   quantity( 1 ),
   turnsInHand( 0 )
@@ -21,19 +20,17 @@ Card::Card( std::string line ) :
   while ( ss >> buffer ){
     tokens.push_back( buffer );
   }
+
+  if ( tokens[ 0 ] == "land" ) {
+    land = std::optional< Land >( new Land( line ) ); 
+
+  }
  
   for (int i = 0; i < tokens.size(); i += 2 ) {
  
     std::string key = tokens.at( i ); 
     if ( key == "name" ) {
       name = tokens[ i+1 ];
-      if ( ( name == "mountain" ) ||
-           ( name == "plains" ) || 
-           ( name == "island" ) ||
-           ( name == "swamp" ) || 
-           ( name == "forest" ) ) {
-         isLand = true; 
-       }
     } 
     else if ( key == "quantity" ){
       quantity = stoi( tokens.at( i+1 ) );
