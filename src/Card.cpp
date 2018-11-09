@@ -10,6 +10,7 @@
 
 Card::Card( std::string line ) :
   cantrip( 0 ),
+  isLand( false ), 
   name( "unnamed" ),  
   quantity( 1 ),
   turnsInHand( 0 )
@@ -22,8 +23,8 @@ Card::Card( std::string line ) :
   }
 
   if ( tokens[ 0 ] == "land" ) {
-    land = std::optional< Land >( new Land( line ) ); 
-
+    land = std::shared_ptr< Land >( new Land( line ) ); 
+    isLand = true;
   }
  
   for (int i = 0; i < tokens.size(); i += 2 ) {

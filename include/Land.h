@@ -1,8 +1,13 @@
+#pragma once
+
 #include <map>
+#include <sstream>
 #include <string>
 #include <vector>
 
-bool isBasicLandName( std::string key ){
+
+
+inline bool isBasicLandName( std::string key ){
 
   return ( ( key == "mountain" ) ||
            ( key == "plains" ) ||
@@ -16,16 +21,16 @@ struct Land {
   std::map< std::string, int > singleColorManaSources;
   std::vector< std::vector< std::string > > hybridManaSources; 
   std::vector< std::map< std::string, int > > manaCombos;
-  Land::Land( std::string line ){
+  Land( std::string line ){
     std::stringstream ss(line);
     std::vector< std::string > tokens;
     std::string buffer;
     while ( ss >> buffer ){
       tokens.push_back( buffer );
     }
-    for ( int i = 1; i < tokens.size() ){
+    for ( int i = 1; i < tokens.size(); i++ ){
       auto key = tokens.at( i );
-      if ( isBasicLandName( tokens.at( i ) ){
+      if ( isBasicLandName( tokens.at( i ) ) ){
         if ( singleColorManaSources.count( key ) ){
           singleColorManaSources[ key ] += stoi( tokens.at( i + 1 ) );
         }
@@ -43,4 +48,4 @@ struct Land {
       } 
     }
   }
-}
+};
